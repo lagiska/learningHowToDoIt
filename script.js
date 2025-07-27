@@ -1,7 +1,5 @@
-const firstName = 'Екатерина';
-const patronim = 'Сергеевна';
-const lastName = 'Филатова'
+const firstName = prompt('Ваше имя', 'Юзер');
+const patronim = prompt('Ваше имя', 'Юзернеймович');
+const lastName = prompt('Ваше имя', 'Юзернеймов');
 
-console.log(firstName);
-console.log(patronim);
-console.log(lastName);
+alert(`Здравствуйте, ${firstName} ${patronim} ${lastName}!`);
