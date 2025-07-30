@@ -1,5 +1,8 @@
-const firstName = prompt('Ваше имя', 'Юзер');
-const patronim = prompt('Ваше имя', 'Юзернеймович');
-const lastName = prompt('Ваше имя', 'Юзернеймов');
+const firstNum = prompt('Первое число', 0);
+const secondNum = prompt('Второе число', 0);
 
-alert(`Здравствуйте, ${firstName} ${patronim} ${lastName}!`);
+
+alert(parseFloat(firstNum)+parseFloat(secondNum));
+alert(parseFloat(firstNum)-parseFloat(secondNum));
+alert(parseFloat(firstNum)*parseFloat(secondNum));
+alert(parseFloat(firstNum)/parseFloat(secondNum));
