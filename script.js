@@ -1,76 +1,107 @@
-const age = prompt('Введите ваш возраст:');
-if (age < 18) {
-    alert('Доступ запрещен');
+let userInput = parseInt(prompt("Введите число N:"));
+for (let i = 1; i <= userInput; i++) {
+  console.log(i);
+};
+
+
+let N = parseInt(prompt("Введите число N:"));
+let sum = 0;
+for (let i = 1; i <= N; i++) {
+  sum += i;
+};
+console.log("Сумма чисел от 1 до " + N + " = " + sum);
+
+
+for (let i = 0; i <= 100; i += 2) {
+  console.log(i);
+};
+
+
+let number;
+do {
+  number = parseInt(prompt("Введите число:"));
+} while (number % 2 !== 0);
+console.log("Вы ввели четное число: " + number);
+
+
+let sum = 0;
+let count = 0;
+let input;
+
+while (true) {
+  input = prompt("Введите число или 'стоп' для завершения:");
+  
+  if (input === "стоп") {
+    break;
+  }
+    
+  let num = parseFloat(input);
+  sum += num;
+  count++;
+}
+
+if (count > 0) {
+  let average = sum / count;
+  console.log("Сумма: " + sum);
+  console.log("Количество чисел: " + count);
+  console.log("Среднее арифметическое: " + average);
 } else {
-    alert('Доступ разрешен');
-}
-
-
-const number = prompt('Введите число: ');
-console.log(number % 2 === 0 ? 'Чётное' : 'Нечётное');
+  console.log("Числа не были введены");
+};
 
 
 
-const num1 = parseFloat(prompt('Введите первое число:'));
-const num2 = parseFloat(prompt('Введите второе число:'));
-const operator = prompt('Введите оператор (+, -, *, /):');
-
-let result;
-switch (operator) {
-  case '+':
-    result = num1 + num2;
-      break;
-  case '-':
-    result = num1 - num2;
-      break;
-  case '*':
-    result = num1 * num2;
-      break;
-  case '/':
-    result = num1 / num2;
-      break;
-  default:
-        result = 'Неверный оператор';
-}
-
-alert(`${num1} ${operator} ${num2} = ${result}`);
-
-
-
-const inputString = prompt('Введите строку:');
-if (inputString.length > 10) {
-    const firstPart = inputString.slice(0, 5);
-    const stars = '*'.repeat(inputString.length - 5);
-    console.log(firstPart + stars);
+let maximum = null;
+let userInput;
+while (userInput !== "стоп") {
+  userInput = prompt("Введите число или 'стоп' для завершения:");
+    
+  if (userInput !== "стоп") {
+    let num = parseFloat(userInput);
+      if (maximum === null || num > maximum) {
+        maximum = num;
+      }
+    }
+};
+if (maximum !== null) {
+    console.log("Максимальное число: " + maximum);
 } else {
-    console.log(inputString.toUpperCase());
+    console.log("Вы не ввели ни одного числа");
+};
+
+
+let str = prompt("Введите строку:");
+let reversed = "";
+    
+for (let i = str.length - 1; i >= 0; i--) {
+  reversed += str[i];
 }
+console.log("Перевернутая строка: " + reversed);
 
 
-const hour = parseInt(prompt('Введите текущий час (0-23):'));
-if (hour >= 0 && hour <= 5) {
-  console.log('Ночь');
-} else if (hour >= 6 && hour <= 11) {
-  console.log('Утро');
-} else if (hour >= 12 && hour <= 17) {
-  console.log('День');
-} else if (hour >= 18 && hour <= 23) {
-  console.log('Вечер');
-} else {
-  console.log('Неверное время');
+
+let string = prompt("Введите строку:").toLowerCase();
+let vowels = "aeiou";
+let count = 0;
+for (let i = 0; i < string.length; i++) {
+  for (let j = 0; j < vowels.length; j++) {
+    if (string[i] === vowels[j]) {
+      count++;
+      break;
+    }
+  }
 }
+console.log("Количество гласных: " + count);
 
 
 
-const email = prompt('Введите e-mail:');
-if (email.includes('@') && email.includes('.')) {
-    alert('Верный формат');
-} else {
-    alert('Ошибка!');
+let str = prompt("Введите строку с буквами 'a': ");
+let result = "";
+for (let i = 0; i < str.length; i++) {
+  if (str[i] === 'a' || str[i] === 'A') {
+    result += 'i';
+  } else {
+    result += str[i];
+  }
 }
-
-
-
-const word = prompt('Введите слово:');
-const reversedWord = word.split('').reverse().join('');
-console.log(word === reversedWord);
+console.log("Результат замены: " + result);
