@@ -1,107 +1,193 @@
-let userInput = parseInt(prompt("Введите число N:"));
-for (let i = 1; i <= userInput; i++) {
-  console.log(i);
-};
+//easy
 
-
-let N = parseInt(prompt("Введите число N:"));
+let numbers = [1, 2, 3, 4, 5];
 let sum = 0;
-for (let i = 1; i <= N; i++) {
-  sum += i;
-};
-console.log("Сумма чисел от 1 до " + N + " = " + sum);
+for (let i = 0; i < numbers.length; i++){
+  sum += numbers[i];
+}
+console.log(sum);
 
 
-for (let i = 0; i <= 100; i += 2) {
-  console.log(i);
-};
+let numbers = [1, 2, 3, 4, 5];
+let sum = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(sum);
 
 
-let number;
-do {
-  number = parseInt(prompt("Введите число:"));
-} while (number % 2 !== 0);
-console.log("Вы ввели четное число: " + number);
+let numbers = [3, 7, 2, 9, 5];
+let max = numbers[0];
+for (let i = 1; i < numbers.length; i++) {
+  if (numbers[i] > max) {
+    max = numbers[i];
+  }
+}
+console.log(max);
 
 
-let sum = 0;
-let count = 0;
-let input;
+let numbers = [3, 7, 2, 9, 5];
+let max = Math.max(...numbers);
+console.log(max);
 
-while (true) {
-  input = prompt("Введите число или 'стоп' для завершения:");
-  
-  if (input === "стоп") {
+
+let fruits = ['apple', 'banana', 'orange'];
+let search = 'banana';
+let found = false;
+for (let i = 0; i < fruits.length; i++) {
+  if (fruits[i] === search) {
+    found = true;
     break;
   }
-    
-  let num = parseFloat(input);
-  sum += num;
-  count++;
+}
+if (found) {
+    console.log("Найден элемент");
+} else {
+    console.log("Элемент не найден");
 }
 
-if (count > 0) {
-  let average = sum / count;
-  console.log("Сумма: " + sum);
-  console.log("Количество чисел: " + count);
-  console.log("Среднее арифметическое: " + average);
+
+let fruits = ['apple', 'banana', 'orange'];
+let search = 'banana';
+if (fruits.includes(search)) {
+  console.log("Найден элемент");
 } else {
-  console.log("Числа не были введены");
-};
-
-
-
-let maximum = null;
-let userInput;
-while (userInput !== "стоп") {
-  userInput = prompt("Введите число или 'стоп' для завершения:");
-    
-  if (userInput !== "стоп") {
-    let num = parseFloat(userInput);
-      if (maximum === null || num > maximum) {
-        maximum = num;
-      }
-    }
-};
-if (maximum !== null) {
-    console.log("Максимальное число: " + maximum);
-} else {
-    console.log("Вы не ввели ни одного числа");
-};
-
-
-let str = prompt("Введите строку:");
-let reversed = "";
-    
-for (let i = str.length - 1; i >= 0; i--) {
-  reversed += str[i];
+  console.log("Элемент не найден");
 }
-console.log("Перевернутая строка: " + reversed);
 
 
+let arr = [1, 2, 3, 4, 5];
+let reversedArr = [];
+for (let i = arr.length - 1; i >= 0; i--) {
+  reversedArr.push(arr[i]);
+}
+console.log(reversedArr);
 
-let string = prompt("Введите строку:").toLowerCase();
-let vowels = "aeiou";
+
+let arr = [1, 2, 3, 4, 5];
+let reversedArr = [...arr].reverse();
+console.log(reversedArr);
+
+
+//medium
+
+let numbers = [1, 2, 3, 2, 4, 2, 5];
 let count = 0;
-for (let i = 0; i < string.length; i++) {
-  for (let j = 0; j < vowels.length; j++) {
-    if (string[i] === vowels[j]) {
-      count++;
+for (let i = 0; i < numbers.length; i++) {
+  if (numbers[i] === 2) {
+    count++;
+  }
+}
+console.log(count);
+
+
+let numbers = [1, 2, 3, 2, 4, 2, 5];
+let count = numbers.filter(num => num === 2).length;
+console.log(count);
+
+
+let arr = [10, 20, 30, 40];
+let sum = 0;
+for (let i = 0; i < arr.length; i++) {
+  sum += arr[i];
+}
+let average = sum / arr.length;
+console.log(average);
+
+
+let arr = [10, 20, 30, 40];
+let average = arr.reduce((acc, curr) => acc + curr, 0) / arr.length;
+console.log(average);
+
+
+let arr = [1, 2, 3, 4, 5, 6];
+let evenNumbers = [];
+for (let i = 0; i < arr.length; i++) {
+  if (arr[i] % 2 === 0) {
+    evenNumbers.push(arr[i]);
+  }
+}
+console.log(evenNumbers);
+
+
+let arr = [1, 2, 3, 4, 5, 6];
+let evenNumbers = arr.filter(num => num % 2 === 0);
+console.log(evenNumbers);
+
+
+let arr = [1, 2, 3];
+let doubledArr = [];
+for (let i = 0; i < arr.length; i++) {
+  doubledArr.push(arr[i] * 2);
+}
+console.log(doubledArr);
+
+
+let arr = [1, 2, 3];
+let doubledArr = arr.map(num => num * 2);
+console.log(doubledArr);
+
+
+//hard
+
+let combined = [];
+for (let i = 0; i < arr1.length; i++) {
+  combined.push(arr1[i]);
+}
+for (let i = 0; i < arr2.length; i++) {
+  let found = false;
+  for (let j = 0; j < combined.length; j++) {
+    if (combined[j] === arr2[i]) {
+      found = true;
       break;
     }
   }
-}
-console.log("Количество гласных: " + count);
-
-
-
-let str = prompt("Введите строку с буквами 'a': ");
-let result = "";
-for (let i = 0; i < str.length; i++) {
-  if (str[i] === 'a' || str[i] === 'A') {
-    result += 'i';
-  } else {
-    result += str[i];
+    if (!found) {
+      combined.push(arr2[i]);
   }
 }
-console.log("Результат замены: " + result);
+console.log(combined);
+
+
+let arr1 = [1, 2, 3];
+let arr2 = [2, 3, 4];
+let combined = [...new Set([...arr1, ...arr2])];
+console.log(combined);
+
+
+// Без метода
+let numbers = [1, 2, 2, 3, 4, 4, 5];
+let unique = [];
+
+for (let i = 0; i < numbers.length; i++) {
+  let isUnique = true;
+  for (let j = 0; j < unique.length; j++) {
+    if (unique[j] === numbers[i]) {
+      isUnique = false;
+      break;
+    }
+  }
+  if (isUnique) {
+    unique.push(numbers[i]);
+  }
+}
+console.log(unique);
+
+
+let numbers = [1, 2, 2, 3, 4, 4, 5];
+let unique = numbers.filter((item, index) => numbers.indexOf(item) === index);
+console.log(unique);
+
+
+
+let numbers = [5, 3, 8, 1, 2];
+let n = numbers.length;
+
+for (let i = 0; i < n - 1; i++) {
+  for (let j = 0; j < n - 1 - i; j++) {
+    if (numbers[j] > numbers[j + 1]) {
+      let temp = numbers[j];
+      numbers[j] = numbers[j + 1];
+      numbers[j + 1] = temp;
+    }
+  }
+}
+
+console.log(numbers);
