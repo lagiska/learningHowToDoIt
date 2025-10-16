@@ -1,193 +1,146 @@
 //easy
 
-let numbers = [1, 2, 3, 4, 5];
-let sum = 0;
-for (let i = 0; i < numbers.length; i++){
-  sum += numbers[i];
+const student = {
+  name: "Иван",
+  age: 15,
+  grade: 8
+};
+
+console.log(`Студент ${student.name} учится в ${student.grade} классе и ему ${student.age} лет.`);
+
+
+student.grade += 1;
+student.hobby = "Рисование";
+console.log(student);
+
+
+const car = {
+  brand: "Toyota",
+  model: "Camry",
+  year: 2020
+};
+
+for (let key in car) {
+  console.log(`${key}: ${car[key]}`);
 }
-console.log(sum);
 
 
-let numbers = [1, 2, 3, 4, 5];
-let sum = numbers.reduce((acc, curr) => acc + curr, 0);
-console.log(sum);
+const settings = {
+  theme: 'dark',
+  volume: 80
+};
+
+if ('theme' in settings) {
+  console.log(settings.theme);
+} else {
+  console.log('Свойство не найдено');
+}
 
 
-let numbers = [3, 7, 2, 9, 5];
-let max = numbers[0];
-for (let i = 1; i < numbers.length; i++) {
-  if (numbers[i] > max) {
-    max = numbers[i];
+const movies = [
+  {title: 'Inception', director: 'Christopher Nolan', year: 2010},
+  {title: 'The Matrix', director: 'Lana Wachowski', year: 1999},
+  {title: 'Interstellar', director: 'Christopher Nolan', year: 2014}
+];
+
+console.log("Фильмы выпущенные до 2005 года:");
+for (let i = 0; i < movies.length; i++) {
+  if (movies[i].year < 2005) {
+    console.log(movies[i].title);
   }
 }
-console.log(max);
 
 
-let numbers = [3, 7, 2, 9, 5];
-let max = Math.max(...numbers);
-console.log(max);
-
-
-let fruits = ['apple', 'banana', 'orange'];
-let search = 'banana';
-let found = false;
-for (let i = 0; i < fruits.length; i++) {
-  if (fruits[i] === search) {
-    found = true;
-    break;
+let nolanMoviesCount = 0;
+for (let i = 0; i < movies.length; i++) {
+  if (movies[i].director === 'Christopher Nolan') {
+    nolanMoviesCount++;
   }
 }
-if (found) {
-    console.log("Найден элемент");
-} else {
-    console.log("Элемент не найден");
-}
+console.log(`Количество фильмов Кристофера Нолана: ${nolanMoviesCount}`);
 
-
-let fruits = ['apple', 'banana', 'orange'];
-let search = 'banana';
-if (fruits.includes(search)) {
-  console.log("Найден элемент");
-} else {
-  console.log("Элемент не найден");
-}
-
-
-let arr = [1, 2, 3, 4, 5];
-let reversedArr = [];
-for (let i = arr.length - 1; i >= 0; i--) {
-  reversedArr.push(arr[i]);
-}
-console.log(reversedArr);
-
-
-let arr = [1, 2, 3, 4, 5];
-let reversedArr = [...arr].reverse();
-console.log(reversedArr);
 
 
 //medium
 
-let numbers = [1, 2, 3, 2, 4, 2, 5];
-let count = 0;
-for (let i = 0; i < numbers.length; i++) {
-  if (numbers[i] === 2) {
-    count++;
+
+const cart = [
+  {name: 'Книга', price: 15, quantity: 2}, 
+  {name: 'Кофе', price: 25, quantity: 1}, 
+  {name: 'Фонарик', price: 10, quantity: 3}
+];
+
+let totalCost = 0;
+for (let i = 0; i < cart.length; i++) {
+  totalCost += cart[i].price * cart[i].quantity;
+}
+console.log(`Общая стоимость корзины: ${totalCost}`);
+
+
+const users = [
+  {id: 1, name: 'Alice', isOnline: true}, 
+  {id: 2, name: 'Bob', isOnline: false}, 
+  {id: 3, name: 'Charlie', isOnline: true}
+];
+
+let firstOnlineUser = null;
+for (let i = 0; i < users.length; i++) {
+  if (users[i].isOnline === true) {
+    firstOnlineUser = users[i];
+    break;
   }
 }
-console.log(count);
+console.log("Первый онлайн пользователь:", firstOnlineUser);
 
 
-let numbers = [1, 2, 3, 2, 4, 2, 5];
-let count = numbers.filter(num => num === 2).length;
-console.log(count);
+const animals = [
+  {name: 'Кот', type: 'домашнее'}, 
+  {name: 'Медведь', type: 'дикое'}, 
+  {name: 'Собака', type: 'домашнее'}, 
+  {name: 'Лиса', type: 'дикое'}
+];
 
+const domestic = [];
+const wild = [];
 
-let arr = [10, 20, 30, 40];
-let sum = 0;
-for (let i = 0; i < arr.length; i++) {
-  sum += arr[i];
-}
-let average = sum / arr.length;
-console.log(average);
-
-
-let arr = [10, 20, 30, 40];
-let average = arr.reduce((acc, curr) => acc + curr, 0) / arr.length;
-console.log(average);
-
-
-let arr = [1, 2, 3, 4, 5, 6];
-let evenNumbers = [];
-for (let i = 0; i < arr.length; i++) {
-  if (arr[i] % 2 === 0) {
-    evenNumbers.push(arr[i]);
+for (const animal of animals) {
+  if (animal.type === 'домашнее') {
+    domestic.push(animal);
+  } else if (animal.type === 'дикое') {
+    wild.push(animal);
   }
 }
-console.log(evenNumbers);
+console.log("Домашние животные:", domestic);
+console.log("Дикие животные:", wild);
 
 
-let arr = [1, 2, 3, 4, 5, 6];
-let evenNumbers = arr.filter(num => num % 2 === 0);
-console.log(evenNumbers);
+const players = [
+  {name: 'Анна', score: 85}, 
+  {name: 'Борис', score: 95}, 
+  {name: 'Вика', score: 76}
+];
 
+let minScore = players[0].score;
+let minPlayer = players[0];
 
-let arr = [1, 2, 3];
-let doubledArr = [];
-for (let i = 0; i < arr.length; i++) {
-  doubledArr.push(arr[i] * 2);
-}
-console.log(doubledArr);
-
-
-let arr = [1, 2, 3];
-let doubledArr = arr.map(num => num * 2);
-console.log(doubledArr);
-
-
-//hard
-
-let combined = [];
-for (let i = 0; i < arr1.length; i++) {
-  combined.push(arr1[i]);
-}
-for (let i = 0; i < arr2.length; i++) {
-  let found = false;
-  for (let j = 0; j < combined.length; j++) {
-    if (combined[j] === arr2[i]) {
-      found = true;
-      break;
-    }
-  }
-    if (!found) {
-      combined.push(arr2[i]);
+for (let i = 1; i < players.length; i++) {
+  if (players[i].score < minScore) {
+    minScore = players[i].score;
+    minPlayer = players[i];
   }
 }
-console.log(combined);
+console.log(`Игрок с наименьшим счетом: ${minPlayer.name}, счет: ${minPlayer.score}`);
 
 
-let arr1 = [1, 2, 3];
-let arr2 = [2, 3, 4];
-let combined = [...new Set([...arr1, ...arr2])];
-console.log(combined);
+const newProducts = [
+  {id: 4, name: 'Чашка'}, 
+  {id: 5, name: 'Блюдце'}
+];
 
+const oldProducts = [
+  {id: 1, name: 'Ложка'}, 
+  {id: 2, name: 'Вилка'}
+];
 
-// Без метода
-let numbers = [1, 2, 2, 3, 4, 4, 5];
-let unique = [];
-
-for (let i = 0; i < numbers.length; i++) {
-  let isUnique = true;
-  for (let j = 0; j < unique.length; j++) {
-    if (unique[j] === numbers[i]) {
-      isUnique = false;
-      break;
-    }
-  }
-  if (isUnique) {
-    unique.push(numbers[i]);
-  }
-}
-console.log(unique);
-
-
-let numbers = [1, 2, 2, 3, 4, 4, 5];
-let unique = numbers.filter((item, index) => numbers.indexOf(item) === index);
-console.log(unique);
-
-
-
-let numbers = [5, 3, 8, 1, 2];
-let n = numbers.length;
-
-for (let i = 0; i < n - 1; i++) {
-  for (let j = 0; j < n - 1 - i; j++) {
-    if (numbers[j] > numbers[j + 1]) {
-      let temp = numbers[j];
-      numbers[j] = numbers[j + 1];
-      numbers[j + 1] = temp;
-    }
-  }
-}
-
-console.log(numbers);
+const allProducts = [...oldProducts, ...newProducts];
+console.log("Все товары: ", allProducts);
