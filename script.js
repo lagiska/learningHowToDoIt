@@ -1,146 +1,134 @@
 //easy
 
-const student = {
-  name: "Иван",
-  age: 15,
-  grade: 8
-};
 
-console.log(`Студент ${student.name} учится в ${student.grade} классе и ему ${student.age} лет.`);
+const greet = (name) => `Привет, ${name}!`;
 
 
-student.grade += 1;
-student.hobby = "Рисование";
-console.log(student);
+const sum = (a, b) => a + b;
 
 
-const car = {
-  brand: "Toyota",
-  model: "Camry",
-  year: 2020
-};
-
-for (let key in car) {
-  console.log(`${key}: ${car[key]}`);
-}
+const isEven = (num) => num % 2 === 0;
 
 
-const settings = {
-  theme: 'dark',
-  volume: 80
-};
-
-if ('theme' in settings) {
-  console.log(settings.theme);
-} else {
-  console.log('Свойство не найдено');
-}
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 
-const movies = [
-  {title: 'Inception', director: 'Christopher Nolan', year: 2010},
-  {title: 'The Matrix', director: 'Lana Wachowski', year: 1999},
-  {title: 'Interstellar', director: 'Christopher Nolan', year: 2014}
-];
+const formatName = (firstName, lastName) => `${lastName}, ${firstName}`;
 
-console.log("Фильмы выпущенные до 2005 года:");
-for (let i = 0; i < movies.length; i++) {
-  if (movies[i].year < 2005) {
-    console.log(movies[i].title);
+
+const findIndex = (arr, value) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) {
+      return i;
+      }
   }
-}
-
-
-let nolanMoviesCount = 0;
-for (let i = 0; i < movies.length; i++) {
-  if (movies[i].director === 'Christopher Nolan') {
-    nolanMoviesCount++;
-  }
-}
-console.log(`Количество фильмов Кристофера Нолана: ${nolanMoviesCount}`);
-
-
+  return -1;
+};
 
 //medium
 
 
-const cart = [
-  {name: 'Книга', price: 15, quantity: 2}, 
-  {name: 'Кофе', price: 25, quantity: 1}, 
-  {name: 'Фонарик', price: 10, quantity: 3}
-];
-
-let totalCost = 0;
-for (let i = 0; i < cart.length; i++) {
-  totalCost += cart[i].price * cart[i].quantity;
-}
-console.log(`Общая стоимость корзины: ${totalCost}`);
-
-
-const users = [
-  {id: 1, name: 'Alice', isOnline: true}, 
-  {id: 2, name: 'Bob', isOnline: false}, 
-  {id: 3, name: 'Charlie', isOnline: true}
-];
-
-let firstOnlineUser = null;
-for (let i = 0; i < users.length; i++) {
-  if (users[i].isOnline === true) {
-    firstOnlineUser = users[i];
-    break;
+const findInArray = (arr, value) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) {
+      return true;
+      }
   }
-}
-console.log("Первый онлайн пользователь:", firstOnlineUser);
+  return false;
+};
 
 
-const animals = [
-  {name: 'Кот', type: 'домашнее'}, 
-  {name: 'Медведь', type: 'дикое'}, 
-  {name: 'Собака', type: 'домашнее'}, 
-  {name: 'Лиса', type: 'дикое'}
-];
-
-const domestic = [];
-const wild = [];
-
-for (const animal of animals) {
-  if (animal.type === 'домашнее') {
-    domestic.push(animal);
-  } else if (animal.type === 'дикое') {
-    wild.push(animal);
+const calculateTotal = (cart) => {
+  let total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price * cart[i].quantity;
   }
-}
-console.log("Домашние животные:", domestic);
-console.log("Дикие животные:", wild);
+  return total;
+};
 
 
-const players = [
-  {name: 'Анна', score: 85}, 
-  {name: 'Борис', score: 95}, 
-  {name: 'Вика', score: 76}
-];
-
-let minScore = players[0].score;
-let minPlayer = players[0];
-
-for (let i = 1; i < players.length; i++) {
-  if (players[i].score < minScore) {
-    minScore = players[i].score;
-    minPlayer = players[i];
+const findLongestWord = (words) => {
+  let maxLength = 0;
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > maxLength) {
+      maxLength = words[i].length;
+    }
   }
-}
-console.log(`Игрок с наименьшим счетом: ${minPlayer.name}, счет: ${minPlayer.score}`);
+  return maxLength;
+};
 
 
-const newProducts = [
-  {id: 4, name: 'Чашка'}, 
-  {id: 5, name: 'Блюдце'}
-];
+const sumAll = (...numbers) => {
+    return numbers.reduce((sum, num) => sum + num, 0);
+};
 
-const oldProducts = [
-  {id: 1, name: 'Ложка'}, 
-  {id: 2, name: 'Вилка'}
-];
 
-const allProducts = [...oldProducts, ...newProducts];
-console.log("Все товары: ", allProducts);
+const validatePassword = (password) => {
+  const isLongEnough = password.length > 6;
+  let hasDigit = false;
+  for (let i = 0; i < password.length; i++) {
+    if (password[i] >= '0' && password[i] <= '9') {
+      hasDigit = true;
+      break;
+    }
+  }
+
+return isLongEnough && hasDigit;
+};
+
+
+const reverseString = (str) => {
+  let reversed = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+
+return reversed;
+};
+
+
+const getUniqueValues = (arr) => {
+  const unique = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!unique.includes(arr[i])) {
+      unique.push(arr[i]);
+    }
+  }
+
+return unique;
+};
+
+
+const arrayToObject = (arr) => {
+  const result = {};
+  for (let i = 0; i < arr.length; i++) {
+    const [key, value] = arr[i];
+    result[key] = value;
+  }
+
+return result;
+};
+
+
+const filterUsers = (users, filters) => {
+  return users.filter(user => {
+    for (const key in filters) {
+      if (user[key] !== filters[key]) {
+        return false;
+      }
+    }
+  return true;
+  });
+};
+
+
+const arrayDiff = (arr1, arr2) => {
+  const result = [];
+  for (let i = 0; i < arr1.length; i++) {
+    if (!arr2.includes(arr1[i])) {
+      result.push(arr1[i]);
+    }
+  }
+  
+return result;
+};
