@@ -1,134 +1,102 @@
-//easy
+
+const addToCart = (cart, item) => {
+  return [...cart, item];
+};
 
 
-const greet = (name) => `Привет, ${name}!`;
+
+const user = {
+  name: 'Alice',
+  profile: {
+    settings: {
+      theme: 'dark',
+      notifications: true
+    }
+  }
+};
+
+const deepClone = (obj) => {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+const userClone = deepClone(user);
+
+userClone.profile.settings.theme = 'light';
+
+console.log(user.profile.settings.theme);
+console.log(userClone.profile.settings.theme);
 
 
-const sum = (a, b) => a + b;
+// 3. Возврат по ссылке
+function getLogger() {
+  const logs = [];
+  return {
+  addLog(message) {
+    logs.push(message);
+  },
+  getLogs() {
+    return logs; // Возвращается ссылка на массив
+  }
+  };
+}
+
+const logger = getLogger();
+logger.addLog("Session started");
+
+const logsReference = logger.getLogs();
+logsReference.push("User logged in");
+
+console.log(logger.getLogs());
+// Что будет здесь?
+// Вывод в консоль массива со следующими элементами: ["Session started", "User logged in"]
+
+/**
+ * Потенциальная проблема:
+ * Метод getLogs() возвращает ссылку на исходный массив logs,
+ * что позволяет изменить извне массив.
+ * Какими будут эти изменения и как они повлияют на работу функции - непредсказуемо.
+ */
 
 
-const isEven = (num) => num % 2 === 0;
+function getLoggerFixed() {
+  const logs = [];
+  return {
+    addLog(message) {
+      logs.push(message);
+    },
+    getLogs() {
+    // Возвращаем копию массива вместо ссылки
+      return [...logs];
+    }
+  };
+}
 
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const loggerFixed = getLoggerFixed();
+loggerFixed.addLog("Session started");
+
+const logsReferenceFixed = loggerFixed.getLogs();
+logsReferenceFixed.push("User logged in");
+
+console.log("Оригинальные логи:", loggerFixed.getLogs()); // ["Session started"]
+console.log("Измененная ссылка:", logsReferenceFixed); // ["Session started", "User logged in"]
 
 
-const formatName = (firstName, lastName) => `${lastName}, ${firstName}`;
-
-
-const findIndex = (arr, value) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === value) {
-      return i;
+const user = {
+  name: 'Alice',
+  profile: {
+    settings: {
+      theme: 'light'
       }
   }
-  return -1;
 };
 
-//medium
-
-
-const findInArray = (arr, value) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === value) {
-      return true;
-      }
-  }
-  return false;
+const enableDarkThemeAlt = (user) => {
+  const userCopy = JSON.parse(JSON.stringify(user));
+  userCopy.profile.settings.theme = 'dark';
+  return userCopy;
 };
 
-
-const calculateTotal = (cart) => {
-  let total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    total += cart[i].price * cart[i].quantity;
-  }
-  return total;
-};
-
-
-const findLongestWord = (words) => {
-  let maxLength = 0;
-  for (let i = 0; i < words.length; i++) {
-    if (words[i].length > maxLength) {
-      maxLength = words[i].length;
-    }
-  }
-  return maxLength;
-};
-
-
-const sumAll = (...numbers) => {
-    return numbers.reduce((sum, num) => sum + num, 0);
-};
-
-
-const validatePassword = (password) => {
-  const isLongEnough = password.length > 6;
-  let hasDigit = false;
-  for (let i = 0; i < password.length; i++) {
-    if (password[i] >= '0' && password[i] <= '9') {
-      hasDigit = true;
-      break;
-    }
-  }
-
-return isLongEnough && hasDigit;
-};
-
-
-const reverseString = (str) => {
-  let reversed = '';
-  for (let i = str.length - 1; i >= 0; i--) {
-    reversed += str[i];
-  }
-
-return reversed;
-};
-
-
-const getUniqueValues = (arr) => {
-  const unique = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (!unique.includes(arr[i])) {
-      unique.push(arr[i]);
-    }
-  }
-
-return unique;
-};
-
-
-const arrayToObject = (arr) => {
-  const result = {};
-  for (let i = 0; i < arr.length; i++) {
-    const [key, value] = arr[i];
-    result[key] = value;
-  }
-
-return result;
-};
-
-
-const filterUsers = (users, filters) => {
-  return users.filter(user => {
-    for (const key in filters) {
-      if (user[key] !== filters[key]) {
-        return false;
-      }
-    }
-  return true;
-  });
-};
-
-
-const arrayDiff = (arr1, arr2) => {
-  const result = [];
-  for (let i = 0; i < arr1.length; i++) {
-    if (!arr2.includes(arr1[i])) {
-      result.push(arr1[i]);
-    }
-  }
-  
-return result;
-};
+const updatedUserAlt = enableDarkThemeAlt(user);
+console.log("Альтернативный метод - исходный:", user.profile.settings.theme); 
+console.log("Альтернативный метод - обновленный:", updatedUserAlt.profile.settings.theme); 
