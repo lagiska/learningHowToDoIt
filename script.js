@@ -1,102 +1,79 @@
+let car = { brand: 'Toyota', model: 'Camry', year: 2021 };
+let carKeys = Object.keys(car);
+console.log('Ключи объекта car:', carKeys);
 
-const addToCart = (cart, item) => {
-  return [...cart, item];
+
+let fruitPrices = { apple: 50, banana: 30, orange: 70 };
+let prices = Object.values(fruitPrices);
+let totalPrice = prices.reduce((sum, price) => sum + price, 0);
+console.log('Общая сумма цен фруктов:', totalPrice);
+
+
+let book = { title: 'JavaScript Basics', author: 'Jane Doe', pages: 200 };
+let bookEntries = Object.entries(book);
+console.log('Пары ключ-значение объекта book:', bookEntries);
+
+
+let countProperties = (obj) => {
+  return Object.keys(obj).length;
 };
 
 
+let testObj = { a: 1, b: 2, c: 3, d: 4 };
+console.log('Количество свойств в testObj:', countProperties(testObj));
 
-const user = {
-  name: 'Alice',
-  profile: {
-    settings: {
-      theme: 'dark',
-      notifications: true
+
+let scores = { Alex: 100, Bob: 75, Charlie: 95 };
+let scoreValues = Object.values(scores);
+let maxScore = Math.max(...scoreValues);
+console.log('Максимальный результат:', maxScore);
+
+
+let sumNumericalValues = (obj) => {
+    let values = Object.values(obj);
+    let sum = 0;
+    
+    values.forEach(value => {
+        if (typeof value === 'number') {
+            sum += value;
+        }
+    });
+    
+    return sum;
+};
+
+let mixedObj = { a: 10, b: 'hello', c: 25, d: true, e: 5 };
+console.log('Сумма числовых значений:', sumNumericalValues(mixedObj));
+
+
+let toQueryString = (obj) => {
+    let entries = Object.entries(obj);
+    let queryParts = entries.map(([key, value]) => {
+        return `${key}=${value}`;
+    });
+    return queryParts.join('&');
+};
+
+
+let userInfo = { name: 'John', age: 30, city: 'New York' };
+console.log('Query string:', toQueryString(userInfo));
+
+
+let areObjectsEqual = (obj1, obj2) => {
+  let keys1 = Object.keys(obj1);
+  let keys2 = Object.keys(obj2);
+    
+    
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+    
+
+  for (let key of keys1) {
+    if (obj1[key] !== obj2[key]) {
+      return false;
     }
-  }
-};
-
-const deepClone = (obj) => {
-  return JSON.parse(JSON.stringify(obj));
-};
-
-const userClone = deepClone(user);
-
-userClone.profile.settings.theme = 'light';
-
-console.log(user.profile.settings.theme);
-console.log(userClone.profile.settings.theme);
-
-
-// 3. Возврат по ссылке
-function getLogger() {
-  const logs = [];
-  return {
-  addLog(message) {
-    logs.push(message);
-  },
-  getLogs() {
-    return logs; // Возвращается ссылка на массив
-  }
-  };
 }
 
-const logger = getLogger();
-logger.addLog("Session started");
-
-const logsReference = logger.getLogs();
-logsReference.push("User logged in");
-
-console.log(logger.getLogs());
-// Что будет здесь?
-// Вывод в консоль массива со следующими элементами: ["Session started", "User logged in"]
-
-/**
- * Потенциальная проблема:
- * Метод getLogs() возвращает ссылку на исходный массив logs,
- * что позволяет изменить извне массив.
- * Какими будут эти изменения и как они повлияют на работу функции - непредсказуемо.
- */
-
-
-function getLoggerFixed() {
-  const logs = [];
-  return {
-    addLog(message) {
-      logs.push(message);
-    },
-    getLogs() {
-    // Возвращаем копию массива вместо ссылки
-      return [...logs];
-    }
-  };
-}
-
-
-const loggerFixed = getLoggerFixed();
-loggerFixed.addLog("Session started");
-
-const logsReferenceFixed = loggerFixed.getLogs();
-logsReferenceFixed.push("User logged in");
-
-console.log("Оригинальные логи:", loggerFixed.getLogs()); // ["Session started"]
-console.log("Измененная ссылка:", logsReferenceFixed); // ["Session started", "User logged in"]
-
-
-const user = {
-  name: 'Alice',
-  profile: {
-    settings: {
-      theme: 'light'
-      }
-  }
+  return true;
 };
-
-const enableDarkThemeAlt = (user) => {
-  const userCopy = JSON.parse(JSON.stringify(user));
-  userCopy.profile.settings.theme = 'dark';
-  return userCopy;
-};
-
-const updatedUserAlt = enableDarkThemeAlt(user);
-console.log("Альтернативный метод - исходный:", user.profile.settings.theme); 
-console.log("Альтернативный метод - обновленный:", updatedUserAlt.profile.settings.theme); 
