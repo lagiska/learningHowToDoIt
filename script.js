@@ -1,79 +1,66 @@
-let car = { brand: 'Toyota', model: 'Camry', year: 2021 };
-let carKeys = Object.keys(car);
-console.log('Ключи объекта car:', carKeys);
-
-
-let fruitPrices = { apple: 50, banana: 30, orange: 70 };
-let prices = Object.values(fruitPrices);
-let totalPrice = prices.reduce((sum, price) => sum + price, 0);
-console.log('Общая сумма цен фруктов:', totalPrice);
-
-
-let book = { title: 'JavaScript Basics', author: 'Jane Doe', pages: 200 };
-let bookEntries = Object.entries(book);
-console.log('Пары ключ-значение объекта book:', bookEntries);
-
-
-let countProperties = (obj) => {
-  return Object.keys(obj).length;
+const calculate = (a, b, operation) => {
+  return operation(a, b);
 };
 
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => a / b;
 
-let testObj = { a: 1, b: 2, c: 3, d: 4 };
-console.log('Количество свойств в testObj:', countProperties(testObj));
-
-
-let scores = { Alex: 100, Bob: 75, Charlie: 95 };
-let scoreValues = Object.values(scores);
-let maxScore = Math.max(...scoreValues);
-console.log('Максимальный результат:', maxScore);
-
-
-let sumNumericalValues = (obj) => {
-    let values = Object.values(obj);
-    let sum = 0;
-    
-    values.forEach(value => {
-        if (typeof value === 'number') {
-            sum += value;
-        }
-    });
-    
-    return sum;
-};
-
-let mixedObj = { a: 10, b: 'hello', c: 25, d: true, e: 5 };
-console.log('Сумма числовых значений:', sumNumericalValues(mixedObj));
+console.log(calculate(5, 3, add)); 
+console.log(calculate(10, 4, subtract)); 
+console.log(calculate(7, 2, multiply)); 
+console.log(calculate(15, 3, divide)); 
 
 
-let toQueryString = (obj) => {
-    let entries = Object.entries(obj);
-    let queryParts = entries.map(([key, value]) => {
-        return `${key}=${value}`;
-    });
-    return queryParts.join('&');
-};
-
-
-let userInfo = { name: 'John', age: 30, city: 'New York' };
-console.log('Query string:', toQueryString(userInfo));
-
-
-let areObjectsEqual = (obj1, obj2) => {
-  let keys1 = Object.keys(obj1);
-  let keys2 = Object.keys(obj2);
-    
-    
-  if (keys1.length !== keys2.length) {
-    return false;
+const squareArray = (arr, callback) => {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(callback(arr[i]));
   }
-    
+  return result;
+};
 
-  for (let key of keys1) {
-    if (obj1[key] !== obj2[key]) {
-      return false;
+
+const square = (num) => num * num;
+
+const numbers = [1, 2, 3, 4, 5];
+console.log(squareArray(numbers, square)); 
+
+
+
+const filterArray = (arr, callback) => {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i])) {
+      result.push(arr[i]);
     }
-}
+  }
+  return result;
+};
 
-  return true;
+const isEven = (num) => num % 2 === 0;
+
+const mixedNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+console.log(filterArray(mixedNumbers, isEven)); 
+
+
+
+const formatText = (text, formatter) => {
+  return formatter(text);
+};
+
+const toUpperCase = (str) => str.toUpperCase();
+const toLowerCase = (str) => str.toLowerCase();
+
+const message = "Hello World!";
+console.log(formatText(message, toUpperCase)); 
+console.log(formatText(message, toLowerCase)); 
+
+
+
+const myForEach = (arr, callback) => {
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr[i], i, arr);
+  }
 };
